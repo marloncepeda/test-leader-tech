@@ -1,0 +1,37 @@
+CREATE TABLE users (
+    Id SERIAL PRIMARY KEY,
+    Name VARCHAR,
+    Lastname VARCHAR,
+    Username VARCHAR NOT NULL,
+    Password VARCHAR NOT NULL,
+    Type VARCHAR NOT NULL,
+    Email VARCHAR NOT NULL,
+    Salt BYTEA NOT NULL
+);
+
+CREATE TABLE notifications (
+    id SERIAL PRIMARY KEY,
+    package_id INTEGER REFERENCES packages(id) ON DELETE CASCADE,
+    notification_type VARCHAR NOT NULL,
+    message TEXT,
+    sent_at TIMESTAMP DEFAULT NOW(),
+    recipient_email VARCHAR,
+    recipient_phone VARCHAR
+);
+
+CREATE TABLE packages (
+    id SERIAL PRIMARY KEY,
+    tracking_number VARCHAR NOT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE package_tracking (
+    id SERIAL PRIMARY KEY,
+    package_id INTEGER REFERENCES packages(id) ON DELETE CASCADE,
+    location VARCHAR,
+    status VARCHAR,
+    tracking_date TIMESTAMP
+);
+
+
+docker exec -it 9f6be8b3b90e psql -U myuser -d mydatabase

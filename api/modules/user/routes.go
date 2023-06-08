@@ -4,10 +4,10 @@ import "github.com/gin-gonic/gin"
 
 func Routes(route *gin.Engine, ginFunc gin.HandlerFunc) {
 
-	userRoute := route.Group("/user").Use(ginFunc)
+	userRoute := route.Group("/user")
 	{
-		userRoute.GET("/get/:id", GetUser)
 		userRoute.POST("/create/", CreateUser)
-		userRoute.PUT("/update/", UpdateUser)
+		userRoute.GET("/get/:id", GetUser).Use(ginFunc)
+		userRoute.PUT("/update/", UpdateUser).Use(ginFunc)
 	}
 }
