@@ -1,7 +1,7 @@
 version: '3'
 services:
   rabbitmq:
-    image: rabbitmq:latest
+    image: rabbitmq:management
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -27,33 +27,38 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      - PORT=8000
     depends_on:
       - rabbitmq
       - postgresql
     # Configuración para el servicio de la API
 
-  subscriber:
-    build:
-      context: ./subscriber
-      dockerfile: ./docker/Dockerfile
-    depends_on:
-      - rabbitmq
-      - postgresql
+  #subscriber:
+  #  build:
+  #    context: ./subscriber
+  #    dockerfile: ./docker/Dockerfile
+  #  depends_on:
+  #    - rabbitmq
+  #    - postgresql
     # Configuración para el servicio del Suscriptor
 
-  acl:
-    build:
-      context: ./acl
-      dockerfile: ./docker/Dockerfile
-    depends_on:
-      - rabbitmq
+  #acl:
+  #  build:
+  #    context: ./acl
+  #    dockerfile: ./docker/Dockerfile
+  #  depends_on:
+  #    - rabbitmq
     # Configuración para el servicio del ACL
 
-  reactjs:
-    image: reactjs:latest
-    ports:
-      - "3000:3000"
-    # Configuración para el servicio de ReactJS
+  #reactjs:
+  #  build:
+  #    context: ./react-app
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - "80:80"
+  # Configuración para el servicio de ReactJS
+
 
 volumes:
   rabbitmq_data:

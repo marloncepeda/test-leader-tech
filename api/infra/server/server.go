@@ -22,7 +22,7 @@ func NewServer() *Server {
 	return &Server{
 		ginEngine: route,
 		httpServer: &http.Server{
-			Addr:    ":8080",
+			Addr:    ":8000",
 			Handler: route,
 		},
 	}
