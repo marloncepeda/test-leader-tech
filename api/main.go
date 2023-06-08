@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("init backend testapi")
+	fmt.Println("init backend testapi /")
 
 	serverHttp := server.NewServer()
 	ginEngine := serverHttp.GinEngine()
