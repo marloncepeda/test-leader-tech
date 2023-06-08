@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -44,8 +45,8 @@ func (r ConnectionDB) GetConnect() *sql.DB {
 
 func InstanceDB() *ConnectionDB {
 	var (
-		driver = "sqlite3"    //create a func global const and import os.Driver
-		url    = "../test.db" //create a func global const and import os.URL
+		driver = "postgres"                                                                                   //create a func global const and import os.Driver
+		url    = "user=myuser dbname=mydatabase password=mypassword host=localhost port=5432 sslmode=require" //create a func global const and import os.URL
 	)
 	dbConfig := NewDBConfig(driver, url)
 	connect, err := dbConfig.ConnectDB()
