@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "front"
+		},
+		{
+			"path": "acl"
+		},
+		{
+			"path": "subscriber"
+		},
+		{
+			"path": "api"
+		},
+		{
+			"path": "."
+		}
+	]
+}

@@ -1,0 +1,61 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    # Configuración para el servicio RabbitMQ
+
+  postgresql:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # Configuración para el servicio PostgreSQL
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+      - postgresql
+    # Configuración para el servicio de la API
+
+  subscriber:
+    build:
+      context: ./subscriber
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - rabbitmq
+      - postgresql
+    # Configuración para el servicio del Suscriptor
+
+  acl:
+    build:
+      context: ./acl
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - rabbitmq
+    # Configuración para el servicio del ACL
+
+  reactjs:
+    image: reactjs:latest
+    ports:
+      - "3000:3000"
+    # Configuración para el servicio de ReactJS
+
+volumes:
+  rabbitmq_data:
+  postgres_data:
+# Volumenes para persistencia de datos
