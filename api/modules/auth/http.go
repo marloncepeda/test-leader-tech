@@ -21,7 +21,10 @@ func LoginAuth(c *gin.Context) {
 		return
 	}
 
-	authLogin, _ := authService.Login(amodel)
+	authLogin, err := authService.Login(amodel)
+	if err != nil {
+		c.JSON(http.StatusOK, utils.Response(http.StatusOK, authLogin, err.Error()))
+	}
 
 	c.JSON(http.StatusOK, utils.Response(http.StatusOK, authLogin, ""))
 }
