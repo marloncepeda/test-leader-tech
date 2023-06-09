@@ -21,17 +21,17 @@ services:
       - postgres_data:/var/lib/postgresql/data
     # Configuración para el servicio PostgreSQL
 
-  api:
-    build:
-      context: ./api
-      dockerfile: ./docker/Dockerfile
-    ports:
-      - "8000:8000"
-    environment:
-      - PORT=8000
-    depends_on:
-      - rabbitmq
-      - postgresql
+  #api:
+  #  build:
+  #    context: ./api
+  #    dockerfile: ./docker/Dockerfile
+  #  ports:
+  #    - "8000:8000"
+  #  environment:
+  #    - PORT=8000
+  #  depends_on:
+  #    - rabbitmq
+  #    - postgresql
     # Configuración para el servicio de la API
 
   #subscriber:

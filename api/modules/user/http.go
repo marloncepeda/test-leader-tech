@@ -36,7 +36,10 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	userCreation, _ := userService.CreateUser(umodel)
+	userCreation, err := userService.CreateUser(umodel)
+	if err != nil {
+		c.JSON(http.StatusOK, utils.Response(http.StatusOK, userCreation, err.Error()))
+	}
 
 	c.JSON(http.StatusOK, utils.Response(http.StatusOK, userCreation, ""))
 

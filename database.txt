@@ -3,7 +3,7 @@ CREATE TABLE users (
     Name VARCHAR,
     Lastname VARCHAR,
     Username VARCHAR NOT NULL,
-    Password VARCHAR NOT NULL,
+    Password BYTEA NOT NULL,
     Type VARCHAR NOT NULL,
     Email VARCHAR NOT NULL,
     Salt BYTEA NOT NULL

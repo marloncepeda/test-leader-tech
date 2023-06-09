@@ -1,6 +1,8 @@
 package user
 
-import "api/internal/utils"
+import (
+	"api/internal/utils"
+)
 
 type UserService struct {
 	repo UserPortRepositories

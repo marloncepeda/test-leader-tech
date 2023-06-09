@@ -38,6 +38,7 @@ func (r *userRepository) GetUser(id string) ([]UserModel, error) {
 			&user.Name,
 			&user.Lastname,
 			&user.Username,
+			&user.Type,
 			&user.Email,
 		)
 		if err != nil {
@@ -57,7 +58,7 @@ func (r *userRepository) CreateUser(user UserModel) ([]UserModel, error) {
 	}
 	defer stmt.Close()
 
-	res, err := stmt.Exec(user.Name, user.Lastname, user.hash, user.Username, user.Email, user.salt)
+	res, err := stmt.Exec(user.Name, user.Lastname, user.Username, user.hash, user.Type, user.Email, user.salt)
 	if err != nil {
 		log.Printf(errors.QueryError.Error(), err.Error())
 		return nil, err
