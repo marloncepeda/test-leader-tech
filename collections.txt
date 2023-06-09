@@ -1,0 +1,9 @@
+users 
+curl -X POST http://localhost:8000/user/create/ -H 'Content-Type: application/json' -d '{"Username":"mylogin","Password":"mypassword","Name":"marlon","Lastname":"cepeda","type":"user","Email":"marlons.cepeda@gmail.com"}'
+
+#auth
+curl -X POST http://localhost:8000/auth/login -H 'Content-Type: application/json' -d '{"username":"mylogin","password":"mypassword"}'
+
+
+
+
