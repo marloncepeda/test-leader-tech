@@ -6,7 +6,7 @@ type ShipmentService struct {
 	repo ShipmentPortRepositories
 }
 
-func NewUserService(repo ShipmentPortRepositories) *ShipmentService {
+func NewShipmentService(repo ShipmentPortRepositories) *ShipmentService {
 	return &ShipmentService{repo: repo}
 }
 
