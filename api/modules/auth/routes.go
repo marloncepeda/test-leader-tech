@@ -11,7 +11,7 @@ func Routes(route *gin.Engine, ginFunc gin.HandlerFunc) {
 
 	authRoute := route.Group("/auth")
 	{
-		authRoute.POST("/login", LoginAuth)
+		authRoute.POST("/login", NewAuthHandler().LoginAuth)
 		//authRoute.POST("/logout/", LogoutAuth)
 		authRoute.PUT("/refrest/", a.RefreshHandler)
 	}
